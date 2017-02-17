@@ -37,6 +37,7 @@
             <div>Total: ${{ final_total | floatformat:2 }}</div>
         </div>
     {% elif cart %}
+        <a href="/order/clear_cart" class="clear-cart">Clear Cart</a>
         <a href="/order/calculate/" class="btn btn-primary calculate-total">Calculate Total</a>
     {% endif %}
 

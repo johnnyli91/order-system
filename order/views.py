@@ -29,7 +29,10 @@ def get_menu(request):
 
     # Matches the sorted products with the corresponding categories
     for category in menu["categories"]:
-        category['products'] = sorted_products[category['id']]
+        try:
+            category['products'] = sorted_products[category['id']]
+        except KeyError:
+            category['products'] = []
 
     return render(request, "order/web_order_menu.html", menu)
 
@@ -99,3 +102,8 @@ def view_cart(request):
         request.session['cart'] = []
     data = {"cart": request.session['cart']}
     return render(request, "order/cart.html", data)
+
+
+def clear_cart(request):
+    request.session['cart'] = []
+    return render(request, "order/cart.html")
