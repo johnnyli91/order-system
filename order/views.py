@@ -19,6 +19,7 @@ def get_menu(request):
 
     menu = {"categories": category_data['data']}
 
+    # Sort the products based on their id_category
     sorted_products = {}
     for product in product_data['data']:
         try:
@@ -26,6 +27,7 @@ def get_menu(request):
         except KeyError:
             sorted_products[product['id_category']] = [product]
 
+    # Matches the sorted products with the corresponding categories
     for category in menu["categories"]:
         category['products'] = sorted_products[category['id']]
 

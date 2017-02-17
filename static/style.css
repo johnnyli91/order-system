@@ -6,8 +6,8 @@
     cursor: pointer;
 }
 
-.category {
-    background-color: #bfbfbf;
+.table-caption {
+    background-color: #66ccff;
     text-align: center;
     color: #ffffff;
 }
