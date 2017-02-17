@@ -1,0 +1,33 @@
+{% extends "order/base.html" %}
+
+{% block content %}
+    {% for category in categories %}
+        <table class="table">
+            <caption class="category">{{ category.name }}</caption>
+            <thead>
+                <th>Product</th>
+                <th>Price</th>
+                <th></th>
+            </thead>
+            {% for product in category.products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>${{ product.price | floatformat:2 }}</td>
+                    <td>
+                        <span class="cursor-pointer add-remove-item"
+                              onclick="addToCart({{ product.id }}, '{{ product.name }}', {{ product.price }})">
+                        Add to Cart
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <form action="/order/add_to_cart/" method="post" id="addForm">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" id="product_id"/>
+            <input type="hidden" name="product_name" id="product_name"/>
+            <input type="hidden" name="price" id="price"/>
+        </form>
+    {% endfor %}
+{% endblock content %}

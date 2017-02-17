@@ -1,0 +1,46 @@
+{% extends "order/base.html" %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <th>Product</th>
+            <th>Quanity</th>
+            <th>Price</th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% if cart %}
+                {% for item in cart %}
+                    <tr>
+                        <td>{{ item.product_name_override }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.price | floatformat:2 }}</td>
+                        <td>
+                            <span class="cursor-pointer add-remove-item"
+                                  onclick="removeFromCart({{ item.product }})">
+                                Remove one
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td>No items in the cart.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    {% if final_total %}
+        <div class="total-result">
+            <div>Subtotal: ${{ subtotal | floatformat:2 }}</div>
+            <div>Tax: ${{ tax | floatformat:2 }}</div>
+            <div>Total: ${{ final_total | floatformat:2 }}</div>
+        </div>
+    {% elif cart %}
+        <a href="/order/calculate/" class="btn btn-primary calculate-total">Calculate Total</a>
+    {% endif %}
+
+    <form action="/order/remove_from_cart/" method="post" id="removeForm">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" id="product_id"/>
+    </form>
+{% endblock content %}

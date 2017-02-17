@@ -1,0 +1,31 @@
+.table {
+    table-layout: fixed;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.category {
+    background-color: #bfbfbf;
+    text-align: center;
+    color: #ffffff;
+}
+
+.add-remove-item {
+    color: #00aaff;
+}
+
+.add-remove-item:hover {
+    text-decoration: underline;
+}
+
+.calculate-total {
+    float: right;
+    margin-right: 20px;
+}
+
+.total-result {
+    float: right;
+    margin-right: 50px;
+}
