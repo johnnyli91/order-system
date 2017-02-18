@@ -37,11 +37,11 @@
             <div>Total: ${{ final_total | floatformat:2 }}</div>
         </div>
     {% elif cart %}
-        <a href="/order/clear_cart" class="clear-cart">Clear Cart</a>
-        <a href="/order/calculate/" class="btn btn-primary calculate-total">Calculate Total</a>
+        <a href="{% url "clear_cart" %}" class="clear-cart">Clear Cart</a>
+        <a href="{% url "calculate_total" %}" class="btn btn-primary calculate-total">Calculate Total</a>
     {% endif %}
 
-    <form action="/order/remove_from_cart/" method="post" id="removeForm">
+    <form action="{% url "remove_from_cart" %}" method="post" id="removeForm">
         {% csrf_token %}
         <input type="hidden" name="product_id" id="product_id"/>
     </form>
